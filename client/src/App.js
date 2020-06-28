@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class App extends React.Component{
   
@@ -7,7 +8,7 @@ class App extends React.Component{
     body: ''
   };
 
-  handleChange = (event) =>{
+  handleChange = event =>{
     const target = event.target;
     const name = target.name;
     const value = target.value
@@ -17,14 +18,34 @@ class App extends React.Component{
       [name]: value
     })
   }
-  
-  
+
+  submit = event => {
+    event.preventDefault();
+
+    const payload = {
+      title: this.state.title,
+      body: this.state.body
+    }
+
+    axios({
+      url: '/api/save',
+      method: 'POST',
+      data: payload
+    })
+      .then(() => {
+        console.log('Data has been sent to the server');
+      })
+      .catch(() => {
+        console.log('Internal server error')
+      });;
+  }; 
+
   render(){
     console.log('state:', this.state)
     return(
       <>
         <h1>Welcome To my App</h1>
-        <form>
+        <form onSubmit={this.submit}>
           <div className="form-input">
             <input 
             type="text"

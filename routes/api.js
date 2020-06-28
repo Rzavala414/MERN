@@ -14,5 +14,10 @@ Router.get('/', (req, res) => {
      })
  });
 
-Router.delete('/deleted')
+Router.post('/save', (req,res) =>{
+    console.log('Body:', req.body)
+    res.json({msg: 'data received'})
+})
+
+
 module.exports = Router

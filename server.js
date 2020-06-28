@@ -2,7 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const path = require('path');
+
 
 app = express();
 const PORT = process.env.PORT || 8080;
@@ -20,7 +22,7 @@ mongoose.connection.on('connected', () =>{
 })
 
 
-
+app.use(cors());
 app.use(morgan('dev'));
 app.use('/api', routes)
 
