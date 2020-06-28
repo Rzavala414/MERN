@@ -15,9 +15,19 @@ Router.get('/', (req, res) => {
  });
 
 Router.post('/save', (req,res) =>{
-    console.log('Body:', req.body)
-    res.json({msg: 'data received'})
-})
+    const data = req.body;
+
+    const newBlogPost = new BlogPost(data);
+
+    newBlogPost.save(error => {
+        if(error){
+            res.status(500).json({msg: 'Sorry, internal server errors'});
+        }else{
+            res.json({msg: 'your data has been saved!!!'});
+        }
+    });
+  
+});
 
 
 module.exports = Router
