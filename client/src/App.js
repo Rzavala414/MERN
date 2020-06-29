@@ -19,6 +19,8 @@ class App extends React.Component{
     })
   }
 
+ 
+
   submit = event => {
     event.preventDefault();
 
@@ -34,11 +36,19 @@ class App extends React.Component{
     })
       .then(() => {
         console.log('Data has been sent to the server');
+        this.resetUserInputs();
       })
       .catch(() => {
         console.log('Internal server error')
       });;
   }; 
+
+  resetUserInputs = () =>{
+    this.setState({
+      title: '',
+      body: ''
+    });
+  }
 
   render(){
     console.log('state:', this.state)

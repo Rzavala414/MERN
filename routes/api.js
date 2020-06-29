@@ -22,9 +22,10 @@ Router.post('/save', (req,res) =>{
     newBlogPost.save(error => {
         if(error){
             res.status(500).json({msg: 'Sorry, internal server errors'});
-        }else{
-            res.json({msg: 'your data has been saved!!!'});
+            return;
         }
+        return res.json({msg: 'your data has been saved!!!'});
+        
     });
   
 });
