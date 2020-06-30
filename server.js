@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8080;
 const routes = require('./routes/api.js');
 
 
-mongoose.connect('mongodb://localhost/mern', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -27,5 +27,9 @@ app.use(express.urlencoded({ extended: false}))
 app.use(cors());
 app.use(morgan('dev'));
 app.use('/api', routes)
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+}
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`))
