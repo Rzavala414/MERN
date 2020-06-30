@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
+    "expresss": "0.0.0",
+    "mongoose": "^5.9.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
@@ -34,5 +36,4 @@
     ]
   },
   "proxy": "http://localhost:8080"
-  
 }

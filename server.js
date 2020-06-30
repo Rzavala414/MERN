@@ -6,7 +6,7 @@ const cors = require('cors')
 const path = require('path');
 
 
-app = express();
+const app = express();
 const PORT = process.env.PORT || 8080;
 
 const routes = require('./routes/api.js');
@@ -29,7 +29,11 @@ app.use(morgan('dev'));
 app.use('/api', routes)
 
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'))
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) =>{
+        res.sendFile(path.resolve(_dirname, 'client', 'build', 'index.html'));
+    });
 }
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`))
